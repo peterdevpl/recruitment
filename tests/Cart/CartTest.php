@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Gwo\Recruitment\Tests\Cart;
 
 use Gwo\Recruitment\Cart\Cart;
-use Gwo\Recruitment\Cart\Exception\QuantityTooLowException;
 use Gwo\Recruitment\Entity\Product;
 use PHPUnit\Framework\TestCase;
 
@@ -80,7 +79,7 @@ class CartTest extends TestCase
 
     /**
      * @test
-     * @expectedException QuantityTooLowException
+     * @expectedException \Gwo\Recruitment\Cart\Exception\QuantityTooLowException
      */
     public function itThrowsExceptionWhenQuantityIsTooLow()
     {
