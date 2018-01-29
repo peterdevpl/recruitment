@@ -18,7 +18,7 @@ class CartTest extends TestCase
         $product = $this->buildTestProduct1();
 
         $cart = new Cart();
-        $cart->addItem($product, 1);
+        $cart->addProduct($product, 1);
 
         $this->assertCount(1, $cart->getItems());
         $this->assertEquals(15000, $cart->getTotalPrice());
@@ -35,10 +35,10 @@ class CartTest extends TestCase
 
         $cart = new Cart();
         $cart
-            ->addItem($product1, 1)
-            ->addItem($product2, 1);
+            ->addProduct($product1, 1)
+            ->addProduct($product2, 1);
 
-        $cart->removeItem($product1);
+        $cart->removeProduct($product1);
 
         $this->assertCount(1, $cart->getItems());
         $this->assertEquals(10000, $cart->getTotalPrice());
@@ -54,8 +54,8 @@ class CartTest extends TestCase
 
         $cart = new Cart();
         $cart
-            ->addItem($product, 1)
-            ->addItem($product, 2);
+            ->addProduct($product, 1)
+            ->addProduct($product, 2);
 
         $this->assertCount(1, $cart->getItems());
         $this->assertEquals(45000, $cart->getTotalPrice());
@@ -70,7 +70,7 @@ class CartTest extends TestCase
 
         $cart = new Cart();
         $cart
-            ->addItem($product, 1)
+            ->addProduct($product, 1)
             ->setQuantity($product, 2);
 
         $this->assertEquals(30000, $cart->getTotalPrice());
@@ -79,15 +79,12 @@ class CartTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Gwo\Recruitment\Cart\Exception\QuantityTooLowException
+     * @expectedException \OutOfBoundsException
      */
-    public function itThrowsExceptionWhenQuantityIsTooLow()
+    public function itThrowsOutOfBoundsExceptionForNonExistentItem()
     {
-        $product = $this->buildTestProduct1();
-        $product->setMinimumQuantity(10);
-
         $cart = new Cart();
-        $cart->addItem($product, 9);
+        $cart->getItem(-1);
     }
 
     private function buildTestProduct1()

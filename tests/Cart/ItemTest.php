@@ -16,9 +16,23 @@ class ItemTest extends TestCase
     public function itAcceptsConstructorArgumentsAndReturnsData()
     {
         $product = new Product();
+        $product->setUnitPrice(10000);
         $item = new Item($product, 10);
 
         $this->assertEquals($product, $item->getProduct());
         $this->assertEquals(10, $item->getQuantity());
+        $this->assertEquals(100000, $item->getTotalPrice());
+    }
+
+    /**
+     * @test
+     * @expectedException \Gwo\Recruitment\Cart\Exception\QuantityTooLowException
+     */
+    public function itThrowsExceptionWhenQuantityIsTooLow()
+    {
+        $product = new Product();
+        $product->setMinimumQuantity(10);
+
+        new Item($product, 9);
     }
 }
