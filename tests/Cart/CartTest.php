@@ -79,12 +79,26 @@ class CartTest extends TestCase
 
     /**
      * @test
+     * @dataProvider getNonExistentItemIndexes
      * @expectedException \OutOfBoundsException
      */
-    public function itThrowsOutOfBoundsExceptionForNonExistentItem()
+    public function itThrowsOutOfBoundsExceptionForNonExistentItem(int $index)
     {
+        $product = $this->buildTestProduct1();
+
         $cart = new Cart();
-        $cart->getItem(-1);
+        $cart->addProduct($product, 1);
+        $cart->getItem($index);
+    }
+
+    public function getNonExistentItemIndexes(): array
+    {
+        return [
+            [PHP_INT_MIN],
+            [-1],
+            [ 1],
+            [PHP_INT_MAX],
+        ];
     }
 
     private function buildTestProduct1()
