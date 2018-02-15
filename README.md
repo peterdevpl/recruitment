@@ -16,4 +16,11 @@ Koszyk powinien operować na groszach, aby uniknąć błędów operacji zmiennop
 
 Aby uprościć zadanie, nie przejmuj się przechowywaniem koszyka w sesji ani w bazie danych.
 Nie musisz pisać kontrolerów ani widoków.
-Zadanie polega tylko na wykonaniu modelu. 
+Zadanie polega tylko na wykonaniu modelu.
+
+### Uruchamianie testów
+Załączona jest konfiguracja PHP w kontenerze Dockera. Po uruchomieniu komendy:
+```bash
+docker-compose up
+```
+zostaną pobrane obrazy PHP7.1 oraz PHP7.2 i uruchomione w nich testy (PHPUnit) i walidacja poprawnośći z PSR-2 (CodeSniffer).
