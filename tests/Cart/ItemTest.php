@@ -28,11 +28,24 @@ class ItemTest extends TestCase
      * @test
      * @expectedException \Gwo\Recruitment\Cart\Exception\QuantityTooLowException
      */
-    public function itThrowsExceptionWhenQuantityIsTooLow()
+    public function constructorThrowsExceptionWhenQuantityIsTooLow()
     {
         $product = new Product();
         $product->setMinimumQuantity(10);
 
         new Item($product, 9);
+    }
+
+    /**
+     * @test
+     * @expectedException \Gwo\Recruitment\Cart\Exception\QuantityTooLowException
+     */
+    public function itThrowsExceptionWhenSettingTooLowQuantity()
+    {
+        $product = new Product();
+        $product->setMinimumQuantity(10);
+
+        $item = new Item($product, 10);
+        $item->setQuantity(9);
     }
 }
