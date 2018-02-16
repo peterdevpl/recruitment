@@ -48,7 +48,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function itIncreasesQuantityOfAnExistingItem()
+    public function itIncreasesQuantityWhenAddingAnExistingProduct()
     {
         $product = $this->buildTestProduct1();
 
@@ -64,7 +64,7 @@ class CartTest extends TestCase
     /**
      * @test
      */
-    public function itUpdatesQuantityOfAnItem()
+    public function itUpdatesQuantityOfAnExistingItem()
     {
         $product = $this->buildTestProduct1();
 
@@ -79,16 +79,41 @@ class CartTest extends TestCase
 
     /**
      * @test
+     */
+    public function itAddsANewItemWhileSettingQuantityForNonExistentItem()
+    {
+        $product = $this->buildTestProduct1();
+
+        $cart = new Cart();
+        $cart->setQuantity($product, 1);
+
+        $this->assertEquals(15000, $cart->getTotalPrice());
+        $this->assertCount(1, $cart->getItems());
+    }
+
+    /**
+     * @test
      * @dataProvider getNonExistentItemIndexes
      * @expectedException \OutOfBoundsException
      */
-    public function itThrowsOutOfBoundsExceptionForNonExistentItem(int $index)
+    public function itThrowsExceptionWhileGettingNonExistentItem(int $index)
     {
         $product = $this->buildTestProduct1();
 
         $cart = new Cart();
         $cart->addProduct($product, 1);
         $cart->getItem($index);
+    }
+
+    /**
+     * @test
+     */
+    public function removingNonExistentItemDoesNotRaiseException()
+    {
+        $cart = new Cart();
+        $cart->removeProduct(new Product());
+
+        $this->assertCount(0, $cart->getItems());
     }
 
     public function getNonExistentItemIndexes(): array
