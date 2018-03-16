@@ -1,20 +1,13 @@
-version: "3.3"
+version: "3"
 
 services:
-    php71:
-        image: cierzniak/php-cli:7.1
-        volumes:
-            - .:/var/www
-            - composer-cache:/root/.composer/cache
-        working_dir: /var/www
-        command: ./verify.sh
-    php72:
-        image: cierzniak/php-cli:7.2
-        volumes:
-            - .:/var/www
-            - composer-cache:/root/.composer/cache
-        working_dir: /var/www
-        command: ./verify.sh
+  php72:
+    image: cierzniak/php-cli:7.2
+    volumes:
+      - .:/var/www
+      - composer-cache:/root/.composer/cache
+    working_dir: /var/www
+    command: ./verify.sh
 
 volumes:
-    composer-cache:
+  composer-cache:
