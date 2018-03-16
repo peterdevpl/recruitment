@@ -23,4 +23,5 @@ Załączona jest konfiguracja PHP w kontenerze Dockera. Po uruchomieniu komendy:
 ```bash
 docker-compose up
 ```
-zostaną pobrane obrazy PHP7.1 oraz PHP7.2 i uruchomione w nich testy (PHPUnit) i walidacja poprawnośći z PSR-2 (CodeSniffer).
+zostanie pobrany obraz PHP7.2 i uruchomione w nim testy (PHPUnit) i walidacja poprawnośći kodu z PSR-2
+(CodeSniffer).
