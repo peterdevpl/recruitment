@@ -19,9 +19,9 @@ Nie musisz pisać kontrolerów ani widoków.
 Zadanie polega tylko na wykonaniu modelu.
 
 ### Uruchamianie testów
-Załączona jest konfiguracja PHP w kontenerze Dockera. Po uruchomieniu komendy:
+Do repozytorium dołączona jest konfiguracja PHP w kontenerze Dockera. Po uruchomieniu komendy:
 ```bash
 docker-compose up
 ```
-zostanie pobrany obraz PHP7.2 i uruchomione w nim testy (PHPUnit) i walidacja poprawnośći kodu z PSR-2
+zostanie pobrany obraz PHP 7.2 oraz uruchomione testy (PHPUnit) i walidacja zgodności kodu z PSR-2
 (CodeSniffer).
